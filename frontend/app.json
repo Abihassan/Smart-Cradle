@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "NurseEye",
+    "slug": "nurseeye",
+    "scheme": "nurseeye",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "backgroundColor": "#0B0E1A"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.nurseeye.app"
+    },
+    "android": {
+      "package": "com.nurseeye.app",
+      "permissions": ["CAMERA", "RECORD_AUDIO"]
+    },
+    "plugins": ["expo-router", "expo-secure-store"],
+    "extra": {
+      "router": {
+        "origin": false
+      }
+    }
+  }
+}

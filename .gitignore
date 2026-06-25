@@ -1,0 +1,32 @@
+# dependencies
+node_modules/
+
+# production
+dist/
+
+# misc
+.DS_Store
+
+# local env files
+.env
+
+# log files
+npm-debug.log*
+
+# IDE files
+.vscode/
+
+# OS files
+Thumbs.db
+
+# MacOS files
+.DS_Store
+
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo
+
+backend/venv

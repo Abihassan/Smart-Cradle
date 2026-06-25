@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: nurseeye
+      POSTGRES_PASSWORD: nurseeye
+      POSTGRES_DB: nurseeye
+    ports:
+      - "5432:5432"
+    volumes:
+      - nurseeye_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nurseeye"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+asyncpg://nurseeye:nurseeye@db:5432/nurseeye
+      JWT_SECRET: dev-jwt-secret-change-in-production
+      REFRESH_TOKEN_SECRET: dev-refresh-secret-change-in-production
+      ALLOWED_ORIGINS: '["*"]'
+    ports:
+      - "8000:8000"
+
+volumes:
+  nurseeye_db_data:
